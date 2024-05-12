@@ -18,8 +18,13 @@
 #include "Granulate.h"
 #include <cmath>
 
-Granulate::Granulate(unsigned int nVoices, const char* data, int size) : rng(juce::Random::getSystemRandom())
+// TODO: make independent of SAMPLE_RATE
+#define SAMPLE_RATE 44100
+
+Granulate::Granulate(unsigned int nVoices, const char* data, int size)
 {
+    rng.setSeedRandomly();
+
     setGrainParameters();  // use default values
     setRandomFactor();
     gStretch_ = 0;
